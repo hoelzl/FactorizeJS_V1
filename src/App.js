@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
 import HeroBar from './HeroBar';
 import ButtonSegment from './ButtonSegment';
 import PrimeSegment from './PrimeSegment';
@@ -13,14 +12,12 @@ class App extends React.Component {
 
   addNumber = number => {
     number = parseInt(number);
-    this.setState({ numbers: this.state.numbers.concat([number]) }, () => {
-      console.log('Adding number: ', this.state);
-    });
+    this.setState({ numbers: this.state.numbers.concat([number]) });
   };
 
   render(props) {
     return (
-      <Container text>
+      <div className='ui container text'>
         <HeroBar icon='cogs'>Prime Factorization</HeroBar>
         <ButtonSegment
           labelText='Please type a number to be factorized.'
@@ -33,7 +30,7 @@ class App extends React.Component {
             primes={factorize(number)}
           />
         ))}
-      </Container>
+      </div>
     );
   }
 }
