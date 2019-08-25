@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+
 import App from './App';
 import HeroBar from './HeroBar';
-import ButtonSegment from './ButtonSegment';
+import NumberInputSegment from './NumberInputSegment';
 import PrimeSegment from './PrimeSegment';
 
 describe('<App />', () => {
@@ -16,10 +17,10 @@ describe('<App />', () => {
     expect(wrapper).toContainMatchingElement('HeroBar');
   });
 
-  it('contains ButtonSegment', () => {
+  it('contains NumberInputSegment', () => {
     const wrapper = shallow(<App />);
 
-    expect(wrapper).toContainMatchingElement('ButtonSegment');
+    expect(wrapper).toContainMatchingElement('NumberInputSegment');
   });
 
   it('initially contains no PrimeSegment', () => {
@@ -58,10 +59,10 @@ describe('<App /> (different testing strategy)', () => {
     expect(wrapper.childAt(0).type()).toBe(HeroBar);
   });
 
-  it('has ButtonSegment as second child', () => {
+  it('has NumberInputSegment as second child', () => {
     const wrapper = shallow(<App />);
 
-    expect(wrapper.childAt(1).type()).toBe(ButtonSegment);
+    expect(wrapper.childAt(1).type()).toBe(NumberInputSegment);
   });
 
   it('has three children after adding a number', () => {

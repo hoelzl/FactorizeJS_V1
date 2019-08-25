@@ -1,27 +1,37 @@
 import React from 'react';
 import HeroBar from './HeroBar';
-import ButtonSegment from './ButtonSegment';
+import NumberInputSegment from './NumberInputSegment';
+
 import PrimeSegment from './PrimeSegment';
 import factorize from './factorize';
 
+/**
+ * The main entry point for the application
+ */
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { numbers: [] };
-  }
+  state = { numbers: [] };
 
-  addNumber = number => {
-    number = parseInt(number);
-    this.setState({ numbers: this.state.numbers.concat([number]) });
+  /**
+   * Adds the value of `stringOrNumber` to `this.state.numbers` if it can
+   * be converted to an integer. Otherwise leaves the state unmodified.
+   * @param {string | number} stringOrNumber - Representation of the number to add
+   */
+  addNumber = stringOrNumber => {
+    const number = isNaN(stringOrNumber)
+      ? parseInt(stringOrNumber)
+      : stringOrNumber;
+    if (!isNaN(number)) {
+      this.setState({ numbers: this.state.numbers.concat([number]) });
+    }
   };
 
   render(props) {
     return (
       <div className='ui container text'>
         <HeroBar icon='cogs'>Prime Factorization</HeroBar>
-        <ButtonSegment
+        <NumberInputSegment
           labelText='Please type a number to be factorized.'
-          onFactorize={this.addNumber}
+          onSubmit={this.addNumber}
         />
         {this.state.numbers.map((number, index) => (
           <PrimeSegment

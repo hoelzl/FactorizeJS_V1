@@ -1,29 +1,33 @@
 import React from 'react';
 
-const numberRegex = /^[0-9]*$/;
-function isValidInput(str) {
-  return numberRegex.test(str);
-}
-
-class ButtonSegment extends React.Component {
-  state = { textInput: '42' };
+class InputSegment extends React.Component {
+  state = { text: '' };
 
   static defaultProps = {
-    onFactorize: _ => {},
-    labelText: 'Please type a number'
+    labelText: 'Please enter some text',
+    buttonText: 'Submit',
+    initialValue: '',
+    onSubmit: _ => {},
+    inputValidator: _ => true
   };
 
+  setValue = str => {
+    this.setState({
+      text: this.props.inputValidator(str) ? str : this.state.text
+    });
+  };
+
+  componentDidMount() {
+    this.setValue(this.props.initialValue);
+  }
+
   onInputChange = event => {
-    let inputString = event.target.value;
-    if (!isValidInput(inputString.trim())) {
-      inputString = this.state.textInput;
-    }
-    this.setState({ textInput: inputString }, () => console.log(this.state));
+    this.setValue(event.target.value);
   };
 
   onFormSubmit = event => {
     event.preventDefault();
-    this.props.onFactorize(this.state.textInput);
+    this.props.onSubmit(this.state.text);
   };
 
   render() {
@@ -34,12 +38,12 @@ class ButtonSegment extends React.Component {
             <label className='ui label'>{this.props.labelText}</label>
             <input
               type='text'
-              value={this.state.textInput}
+              value={this.state.text}
               onChange={this.onInputChange}
             />
           </div>
           <button className='ui button fluid' type='submit'>
-            Factorize
+            {this.props.buttonText}
           </button>
         </form>
       </div>
@@ -47,4 +51,4 @@ class ButtonSegment extends React.Component {
   }
 }
 
-export default ButtonSegment;
+export default InputSegment;
