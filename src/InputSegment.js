@@ -12,9 +12,11 @@ class InputSegment extends React.Component {
   };
 
   setValue = str => {
-    this.setState({
-      text: this.props.inputValidator(str) ? str : this.state.text
-    });
+    if (str !== this.state.text && this.props.inputValidator(str)) {
+      this.setState({
+        text: str
+      });
+    }
   };
 
   componentDidMount() {
