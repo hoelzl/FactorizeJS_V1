@@ -1,9 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow, mount } from 'enzyme';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<App />', () => {
+  it('renders without crashing', () => {
+    shallow(<App />);
+  });
+
+  it('contains HeroBar', () => {
+    const wrapper = shallow(<App />);
+
+    expect(wrapper).toContainMatchingElement('HeroBar');
+  });
+
+  it('contains ButtonSegment', () => {
+    const wrapper = shallow(<App />);
+
+    expect(wrapper).toContainMatchingElement('ButtonSegment');
+  });
+
+  it('initially contains no PrimeSegment', () => {
+    const wrapper = shallow(<App />);
+
+    expect(wrapper).not.toContainMatchingElement('PrimeSegment');
+  });
+
+  it('contains PrimdSegment after adding number', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().addNumber(42);
+    expect(wrapper).toContainMatchingElement('PrimeSegment');
+  });
 });
