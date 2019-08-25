@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container } from 'semantic-ui-react';
+import HeroBar from './HeroBar';
+import ButtonSegment from './ButtonSegment';
+import PrimeSegment from './PrimeSegment';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { numbers: [] };
+  }
+
+  addNumber = number => {
+    this.setState({ numbers: this.state.numbers.concat([number]) }, () => {
+      console.log('Adding number: ', this.state);
+    });
+  };
+
+  render(props) {
+    return (
+      <Container text>
+        <HeroBar icon='cogs'>Prime Factorization</HeroBar>
+        <ButtonSegment
+          labelText='Please type a number to be factorized.'
+          onFactorize={this.addNumber}
+        />
+        {this.state.numbers.map((number, index) => (
+          <PrimeSegment key={index} number={number} />
+        ))}
+      </Container>
+    );
+  }
 }
 
 export default App;
