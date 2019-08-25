@@ -9,4 +9,8 @@ describe('factorize', () => {
     test('2 is prime', () => {
         expect(factorize(2)).toStrictEqual([2]);
     });
+
+    test('3 is prime', () => {
+        expect(factorize(3)).toStrictEqual([3]);
+    });
 });
