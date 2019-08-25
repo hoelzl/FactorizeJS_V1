@@ -25,4 +25,12 @@ describe('factorize', () => {
     test('5 is prime', () => {
         expect(factorize(5)).toStrictEqual([5]);
     });
+
+    test('42 is 2*3*7', () => {
+        expect(factorize(42)).toStrictEqual([2, 3, 7]);
+    });
+
+    test('17640 is 2*2*2*3*3*5*7*7', () => {
+        expect(factorize(17640)).toStrictEqual([2, 2, 2, 3, 3, 5, 7, 7]);
+    });
 });
