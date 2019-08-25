@@ -1,12 +1,10 @@
 function factorize(n) {
   const result = [];
-  while (n % 2 === 0) {
-    result.push(2);
-    n /= 2;
-  }
-  while (n % 3 === 0) {
-    result.push(3);
-    n /= 3;
+  for (let i = 2; i <= n; i++) {
+    while (n % i === 0) {
+      result.push(i);
+      n /= i;
+    }
   }
   return result;
 }
