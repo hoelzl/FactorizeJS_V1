@@ -17,4 +17,8 @@ describe('factorize', () => {
     test('4 is 2*2', () => {
         expect(factorize(4)).toStrictEqual([2, 2]);
     });
+
+    test('9 is 3*3', () => {
+        expect(factorize(9)).toStrictEqual([3, 3]);
+    });
 });
