@@ -30,6 +30,6 @@ const PrimeSegment = props => {
 PrimeSegment.defaultProps = {
   number: 0,
   primes: []
-}
+};
 
 export default PrimeSegment;

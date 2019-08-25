@@ -27,7 +27,11 @@ class App extends React.Component {
           onFactorize={this.addNumber}
         />
         {this.state.numbers.map((number, index) => (
-          <PrimeSegment key={index} number={number} primes={factorize(number)} />
+          <PrimeSegment
+            key={index}
+            number={number}
+            primes={factorize(number)}
+          />
         ))}
       </Container>
     );

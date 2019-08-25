@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es2018",
+    "jsx": "preserve"
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
